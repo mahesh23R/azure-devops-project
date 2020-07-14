@@ -14,9 +14,22 @@ stages:
     - bash: echo $(Build.BuildNumber)
     - bash: echo $(Build.BuildId)
     - bash: echo $(Build.SourceDirectory)
-    - bash: echo $(System.DefaultworkingDirectory)
-    - bash: echo ls -R $(System.DefaultworkingDirectory)
+    - bash: echo $(System.DefaultWorkingDirectory)
+    - bash: ls -R $(System.DefaultWorkingDirectory)
     - bash: echo $(Build.ArctifactStagingDirectory)
+    - bash: java -version
+    - bash: node --version
+    - bash: python --version
+    - bash: mvn -version
+    - bash: ls -R $(Build.ArctifactStagingDirectory)
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.DefaultWorkingDirectory)'
+        Contents: |
+          **/*.yaml
+          **/*.tf
+        TargetFolder: '$(Build.ArctifactStagingDirectory)'
+    - bash: ls -R $(Build.ArctifactStagingDirectory)    
   # - job: SecondJob
   #   steps:
   #   - bash: echo build SecondJob
