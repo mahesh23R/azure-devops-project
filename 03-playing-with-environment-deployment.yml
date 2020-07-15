@@ -35,13 +35,6 @@ stages:
         deploy:
           steps:
             - script: echo deploy to QA            
-        
-
-- stage: Build
-  jobs:
-  - job: BuildJob
-    steps:
-    - bash: echo "do the Build"        
 
 # steps:
 # - script: echo Running on $(operatingSystem)
