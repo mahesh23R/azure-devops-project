@@ -30,3 +30,11 @@ steps:
     backendAzureRmStorageAccountName: 'storageaccoutnmahesh23'
     backendAzureRmContainerName: 'storageaccoutnmahesh23container'
     backendAzureRmKey: 'kubernetes-dev.tfstate'
+
+- task: TerraformCLI@0
+  inputs:
+    command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure-resourcegroup-service-connection'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_publickey=$(publickey.secureFilePath)'
+  
